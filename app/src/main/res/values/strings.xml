@@ -1,3 +1,21 @@
 <resources>
+    <!-- Name of the app -->
     <string name="app_name">Inventory App</string>
+
+    <!-- Text for the add product button -->
+    <string name="add_product">Add product</string>
+
+    <!-- Text of the sales button -->
+    <string name="sales_button_text">-</string>
+
+    <!-- Currency symbol -->
+    <string name="currency_symbol">€</string>
+
+    <!-- Text for the Details view -->
+    <string name="details_shipment_button_text">+</string>
+    <string name="details_sales_button_text">-</string>
+    <string name="details_order_label">Order from customer</string>
+    <string name="details_order_button_text">Order now</string>
+    <string name="details_delete_label">Delete the complete product</string>
+    <string name="details_delete_button_text">Delete now</string>
 </resources>

@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <!-- colors for the app -->
+    <color name="colorPrimary">#133816</color>
+    <color name="colorPrimaryDark">#0e290f</color>
+    <color name="colorAccent">#95326a</color>
+
+    <!-- colors for the background of the list items -->
+    <color name="colorListItemBackground">#2d6788</color>
+    <color name="colorListItemBackgroundLight">#85acd6</color>
+
+    <!-- colors for the list item texts -->
+    <color name="colorListItemTextPrimary">#212121</color>
+    <color name="colorListItemTextSecondary">#757575</color>
+
+    <!-- colors for the background of the details layout -->
+    <color name="colorDetailsBackground">#1d1c53</color>
+    <color name="colorDetailsBackgroundLight">#366ea2</color>
+
+    <!-- colors for the details texts -->
+    <color name="colorDetailsTextPrimary">@android:color/white</color>
+    <color name="colorDetailsTextSecondary">#bbcee8</color>
+
 </resources>
