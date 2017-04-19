@@ -11,6 +11,9 @@
     <!-- Currency symbol -->
     <string name="currency_symbol">€</string>
 
+    <!-- Floating action button text -->
+    <string name="fab_text">Add</string>
+
     <!-- Text for the Details view -->
     <string name="details_shipment_button_text">+</string>
     <string name="details_sales_button_text">-</string>
@@ -18,4 +21,7 @@
     <string name="details_order_button_text">Order now</string>
     <string name="details_delete_label">Delete the complete product</string>
     <string name="details_delete_button_text">Delete now</string>
+
+    <!-- Empty text view string -->
+    <string name="empty_text_view_string">No data found.</string>
 </resources>
