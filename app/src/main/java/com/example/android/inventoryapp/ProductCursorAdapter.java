@@ -21,14 +21,14 @@ public class ProductCursorAdapter extends CursorAdapter {
      * Constructor of the ProductCursorAdapter.
      *
      * @param context in which the object is created
-     * @param c is the Curser used to get data from a database
+     * @param c       is the Curser used to get data from a database
      */
-     public ProductCursorAdapter(Context context, Cursor c) {
-         super(context, c, 0);
+    public ProductCursorAdapter(Context context, Cursor c) {
+        super(context, c, 0);
 
-     }
+    }
 
-/**
+    /**
      * Makes a new blank list item view. No data is set (or bound) to the views yet.
      *
      * @param context app context

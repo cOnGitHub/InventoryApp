@@ -37,6 +37,9 @@ public final class ProductContract {
      */
     public static final class ProductEntry implements BaseColumns {
 
+        // The content URI for the product data
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_PRODUCTS);
+
         /**
          * MIME type of the CONTENT_URI of a list of products.
          */

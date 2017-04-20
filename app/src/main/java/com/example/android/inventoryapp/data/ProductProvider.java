@@ -43,7 +43,7 @@ public class ProductProvider extends ContentProvider {
         // integer code PRODUCTS.
         sUriMatcher.addURI(ProductContract.CONTENT_AUTHORITY, ProductContract.PATH_PRODUCTS, PRODUCTS);
 
-        // The content URI of the form "content://com.example.android.pets/pets/#" will map to the
+        // The content URI of the form "content://com.example.android.products/products/#" will map to the
         // integer code PRODUCT_ID.
         sUriMatcher.addURI(ProductContract.CONTENT_AUTHORITY, ProductContract.PATH_PRODUCTS + "/#", PRODUCT_ID);
     }
