@@ -8,17 +8,20 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.inventoryapp.data.ProductContract.ProductEntry;
 
 
 /**
+ * DetailActivitiy for displaying details of a selected product.
+ * <p>
  * Created by Christi on 19.04.2017.
  */
-
 public class DetailActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
-
 
     // Identify the data loader
     private static final int EXISTING_PRODUCT_LOADER = 0;
@@ -30,13 +33,19 @@ public class DetailActivity extends AppCompatActivity implements LoaderCallbacks
     private TextView mProductNameTextView;
 
     // Image URI text view
-    private TextView mImageUriTextView;
+    private ImageView mImageView;
 
     // Price text view
     private TextView mPriceTextView;
 
     // Quantity text view
     private TextView mQuantityTextView;
+
+    // Shipment button ('+')
+    private Button mShipmentButton;
+
+    // Sales button ('-')
+    private Button mSalesButton;
 
     // Reorder rate text view
     private TextView mReorderRateTextView;
@@ -49,13 +58,55 @@ public class DetailActivity extends AppCompatActivity implements LoaderCallbacks
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
+        // Product name text view
+        mProductNameTextView = (TextView) findViewById(R.id.details_product_name_text_view);
+
+        // Image URI text view
+        mImageView = (ImageView) findViewById(R.id.details_image_view);
+
+        // Price text view
+        mPriceTextView = (TextView) findViewById(R.id.details_price_text_view);
+
+        // Quantity text view
+        mQuantityTextView = (TextView) findViewById(R.id.details_quantity_text_view);
+
+        // Shipment button ('+')
+        mShipmentButton = (Button) findViewById(R.id.details_shipment_button);
+
+        // Sales button ('-')
+        mSalesButton = (Button) findViewById(R.id.details_sales_button);
+
+        // Reorder rate text view
+        mReorderRateTextView = (TextView) findViewById(R.id.details_reorder_rate_text_view);
+
+        // Supplier email text view
+        mSupplierEmailTextView = (TextView) findViewById(R.id.details_supplier_email_text_view);
+
         // Get the content URI from the intent that was used to launch this activity.
         Intent intent = getIntent();
         mCurrentProductUri = intent.getData();
 
-        // Initialize a loader to read the pet data from the database
+        // Initialize a loader to read the product data from the database
         // and display the current values in the editor
         getLoaderManager().initLoader(EXISTING_PRODUCT_LOADER, null, this);
+
+        // Set OnClickListener on shipment button
+        mShipmentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Execute helper method for increase of quantity
+                int rowsAffected = DbUpdateUtils.increaseQuantity(mCurrentProductUri, getApplication());
+            }
+        });
+
+        // Set OnClickListener on sales button
+        mSalesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Execute helper method for reduction of quantity
+                int rowsAffected = DbUpdateUtils.reduceQuantity(mCurrentProductUri, getApplication());
+            }
+        });
 
     }
 
@@ -73,7 +124,7 @@ public class DetailActivity extends AppCompatActivity implements LoaderCallbacks
 
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context
-                mCurrentProductUri,         // Query the content URI for the current pet
+                mCurrentProductUri,         // Query the content URI for the current product
                 projection,             // Columns to include in the resulting Cursor
                 null,                   // No selection clause
                 null,                   // No selection arguments
@@ -100,15 +151,25 @@ public class DetailActivity extends AppCompatActivity implements LoaderCallbacks
 
             // Extract out the value from the Cursor for the given column index
             String name = cursor.getString(nameColumnIndex);
-            String imageUri = cursor.getString(imageUriColumnIndex);
-            double price = cursor.getDouble(imageUriColumnIndex);
+            String imageUriString = cursor.getString(imageUriColumnIndex);
+            double price = cursor.getDouble(priceColumnIndex);
             int quantity = cursor.getInt(quantityColumnIndex);
             int reorderRate = cursor.getInt(reorderRateColumnIndex);
             String supplierEmail = cursor.getString(supplierEmailColumnIndex);
 
+            /**
+            Bitmap bitmap = null;
+            try {
+                //getBitmapFromUri();
+                Uri imageUri = Uri.parse(imageUriString);
+                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+            } catch (IOException e) {
+                Log.e("DetailActivity", "Problem creating Bitmap from Uri", e);
+            }**/
+
             // Update the views on the screen with the values from the database
             mProductNameTextView.setText(name);
-            mImageUriTextView.setText(imageUri);
+            //mImageView.setImageBitmap(bitmap);
             mPriceTextView.setText(Double.toString(price));
             mQuantityTextView.setText(Integer.toString(quantity));
             mReorderRateTextView.setText(Integer.toString(reorderRate));
@@ -121,10 +182,10 @@ public class DetailActivity extends AppCompatActivity implements LoaderCallbacks
     public void onLoaderReset(Loader<Cursor> loader) {
         // If the loader is invalidated, clear out all the data from the input fields.
         mProductNameTextView.setText("");
-        mImageUriTextView.setText("");
-        mPriceTextView.setText(Double.toString(0.0));
-        mQuantityTextView.setText(Integer.toString(0));
-        mReorderRateTextView.setText(Integer.toString(0));
+        mImageView.invalidate();
+        mPriceTextView.setText("");
+        mQuantityTextView.setText("");
+        mReorderRateTextView.setText("");
         mSupplierEmailTextView.setText("");
     }
 

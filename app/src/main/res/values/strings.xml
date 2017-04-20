@@ -19,7 +19,7 @@
     <string name="details_sales_button_text">-</string>
     <string name="details_supplier_email_label">Supplier email:</string>
     <string name="details_order_button_text">Order now</string>
-    <string name="details_delete_label">Delete the complete product</string>
+    <string name="details_delete_label">You can delete the whole product: </string>
     <string name="details_delete_button_text">Delete now</string>
 
     <!-- Empty text view string -->
@@ -37,7 +37,7 @@
     <!-- Subtitle text for the empty view that prompts the user to add a pet [CHAR LIMIT=50] -->
     <string name="empty_view_subtitle_text">Get started by adding a pet</string>
 
-
+    product_cursor_adapter_decrement_failed
 
     <!-- Toast message in editor when new product has been successfully inserted [CHAR LIMIT=NONE] -->
     <string name="add_product_page_insert_successful">Product saved</string>
@@ -47,6 +47,13 @@
 
     <!-- Warning message when fields in the add product page are left empty which require a value -->
     <string name="fields_are_still_empty">One of name, price or supplier email needs a value. Please supply it.</string>
+
+    <!-- Toast message in editor when new product has been successfully inserted [CHAR LIMIT=NONE] -->
+    <string name="product_cursor_adapter_decrement_successful">Quantity reduced by 1</string>
+
+    <!-- Toast message in add product page when new product has failed to be inserted [CHAR LIMIT=NONE] -->
+    <string name="product_cursor_adapter_decrement_failed">Error on reducing quantity</string>
+
 
 
     <!-- Toast message in editor when current pet was successfully updated [CHAR LIMIT=NONE] -->

@@ -182,6 +182,15 @@ public class AddProductActivity extends AppCompatActivity {
             // Otherwise, the insertion was successful and we can display a toast.
             Toast.makeText(this, getString(R.string.add_product_page_insert_successful),
                     Toast.LENGTH_SHORT).show();
+
+            // Clear the fields of the UI
+            mNameEditText.setText("");
+            mImageUriEditText.setText("");
+            mPriceEditText.setText("");
+            mQuantityEditText.setText("");
+            //mReorderRateSpinner;
+            mSupplierEmailEditText.setText("");
+
         }
     }
 
