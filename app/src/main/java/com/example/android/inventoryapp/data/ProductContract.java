@@ -70,11 +70,11 @@ public final class ProductContract {
         public static final String COLUMN_PRODUCT_NAME ="name";
 
         /**
-         * Description of the product.
+         * Image URI of the product.
          *
          * Type: TEXT
          */
-        public static final String COLUMN_PRODUCT_DESCRIPTION = "description";
+        public static final String COLUMN_PRODUCT_IMAGE_URI = "image_uri";
 
         /**
          * Price of the product.

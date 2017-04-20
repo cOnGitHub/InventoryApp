@@ -11,7 +11,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -88,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<C
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Banana");
-        values.put(ProductEntry.COLUMN_PRODUCT_DESCRIPTION, "Banana from South Africa - biological");
+        values.put(ProductEntry.COLUMN_PRODUCT_IMAGE_URI, "Banana from South Africa - biological");
         values.put(ProductEntry.COLUMN_PRODUCT_PRICE, 1.23);
         values.put(ProductEntry.COLUMN_PRODUCT_QUANTITY, 100);
         values.put(ProductEntry.COLUMN_PRODUCT_REORDER_RATE, ProductEntry.REORDER_WEEKLY);
@@ -99,20 +98,12 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<C
         Uri newUri = getContentResolver().insert(ProductEntry.CONTENT_URI, values);
     }
 
-    /**
-     * Helper method to delete all pets in the database.
-     */
-    private void deleteAllProducts() {
-        int rowsDeleted = getContentResolver().delete(ProductEntry.CONTENT_URI, null, null);
-        Log.v(LOG_TAG, rowsDeleted + " rows deleted from products database");
-    }
-
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         // The projection indicating the columns of the table
         String[] projection = {ProductEntry._ID,
                 ProductEntry.COLUMN_PRODUCT_NAME,
-                ProductEntry.COLUMN_PRODUCT_DESCRIPTION,
+                ProductEntry.COLUMN_PRODUCT_IMAGE_URI,
                 ProductEntry.COLUMN_PRODUCT_PRICE,
                 ProductEntry.COLUMN_PRODUCT_QUANTITY,
                 ProductEntry.COLUMN_PRODUCT_REORDER_RATE,

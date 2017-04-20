@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorDetailsBackgroundLight"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:drawSelectorOnTop="true">
 
     <LinearLayout
         android:layout_width="match_parent"

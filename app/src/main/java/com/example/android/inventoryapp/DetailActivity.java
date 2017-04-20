@@ -29,8 +29,8 @@ public class DetailActivity extends AppCompatActivity implements LoaderCallbacks
     // Product name text view
     private TextView mProductNameTextView;
 
-    // Description text view
-    private TextView mDescriptionTextView;
+    // Image URI text view
+    private TextView mImageUriTextView;
 
     // Price text view
     private TextView mPriceTextView;
@@ -65,7 +65,7 @@ public class DetailActivity extends AppCompatActivity implements LoaderCallbacks
         String[] projection = {
                 ProductEntry._ID,
                 ProductEntry.COLUMN_PRODUCT_NAME,
-                ProductEntry.COLUMN_PRODUCT_DESCRIPTION,
+                ProductEntry.COLUMN_PRODUCT_IMAGE_URI,
                 ProductEntry.COLUMN_PRODUCT_PRICE,
                 ProductEntry.COLUMN_PRODUCT_QUANTITY,
                 ProductEntry.COLUMN_PRODUCT_REORDER_RATE,
@@ -92,7 +92,7 @@ public class DetailActivity extends AppCompatActivity implements LoaderCallbacks
         if (cursor.moveToFirst()) {
             // Find the columns of product attributes that we're interested in
             int nameColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_NAME);
-            int descriptionColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_DESCRIPTION);
+            int imageUriColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_IMAGE_URI);
             int priceColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_PRICE);
             int quantityColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_QUANTITY);
             int reorderRateColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_REORDER_RATE);
@@ -100,15 +100,15 @@ public class DetailActivity extends AppCompatActivity implements LoaderCallbacks
 
             // Extract out the value from the Cursor for the given column index
             String name = cursor.getString(nameColumnIndex);
-            String description = cursor.getString(descriptionColumnIndex);
-            double price = cursor.getDouble(descriptionColumnIndex);
+            String imageUri = cursor.getString(imageUriColumnIndex);
+            double price = cursor.getDouble(imageUriColumnIndex);
             int quantity = cursor.getInt(quantityColumnIndex);
             int reorderRate = cursor.getInt(reorderRateColumnIndex);
             String supplierEmail = cursor.getString(supplierEmailColumnIndex);
 
             // Update the views on the screen with the values from the database
             mProductNameTextView.setText(name);
-            mDescriptionTextView.setText(description);
+            mImageUriTextView.setText(imageUri);
             mPriceTextView.setText(Double.toString(price));
             mQuantityTextView.setText(Integer.toString(quantity));
             mReorderRateTextView.setText(Integer.toString(reorderRate));
@@ -121,7 +121,7 @@ public class DetailActivity extends AppCompatActivity implements LoaderCallbacks
     public void onLoaderReset(Loader<Cursor> loader) {
         // If the loader is invalidated, clear out all the data from the input fields.
         mProductNameTextView.setText("");
-        mDescriptionTextView.setText("");
+        mImageUriTextView.setText("");
         mPriceTextView.setText(Double.toString(0.0));
         mQuantityTextView.setText(Integer.toString(0));
         mReorderRateTextView.setText(Integer.toString(0));

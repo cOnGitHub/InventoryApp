@@ -31,8 +31,8 @@ public class AddProductActivity extends AppCompatActivity {
     // EditText field to enter the product's name
     private EditText mNameEditText;
 
-    // EditText field to enter the product's description
-    private EditText mDescriptionEditText;
+    // EditText field to enter the product's image URI
+    private EditText mImageUriEditText;
 
     // EditText field to enter the product's price
     private EditText mPriceEditText;
@@ -68,7 +68,7 @@ public class AddProductActivity extends AppCompatActivity {
 
         // Find all relevant views that we will need to read user input from
         mNameEditText = (EditText) findViewById(R.id.edit_product_name);
-        mDescriptionEditText = (EditText) findViewById(R.id.edit_product_description);
+        mImageUriEditText = (EditText) findViewById(R.id.edit_product_image_uri);
         mPriceEditText = (EditText) findViewById(R.id.edit_product_price);
         mQuantityEditText = (EditText) findViewById(R.id.edit_product_quantity);
         mReorderRateSpinner = (Spinner) findViewById(R.id.spinner_reorder_rate);
@@ -134,7 +134,7 @@ public class AddProductActivity extends AppCompatActivity {
         // Read from input fields
         // Use trim to eliminate leading or trailing white space
         String nameString = mNameEditText.getText().toString().trim();
-        String descriptionString = mDescriptionEditText.getText().toString().trim();
+        String imageUriString = mImageUriEditText.getText().toString().trim();
         String priceString = mPriceEditText.getText().toString().trim();
         String quantityString = mQuantityEditText.getText().toString().trim();
         String supplierEmailString = mSupplierEmailEditText.getText().toString().trim();
@@ -153,7 +153,7 @@ public class AddProductActivity extends AppCompatActivity {
         // and product attributes from the add product page are the values.
         ContentValues values = new ContentValues();
         values.put(ProductEntry.COLUMN_PRODUCT_NAME, nameString);
-        values.put(ProductEntry.COLUMN_PRODUCT_DESCRIPTION, descriptionString);
+        values.put(ProductEntry.COLUMN_PRODUCT_IMAGE_URI, imageUriString);
         values.put(ProductEntry.COLUMN_PRODUCT_REORDER_RATE, mReorderRate);
         values.put(ProductEntry.COLUMN_PRODUCT_SUPPLIER_EMAIL, supplierEmailString);
 

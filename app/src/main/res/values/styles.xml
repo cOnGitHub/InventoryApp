@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     <!-- Theme of the editor -->
-    <style name="EditorTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="DetailTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorDetailsBackgroundLight</item>
         <item name="colorPrimaryDark">@color/colorDetailsBackground</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -21,6 +21,7 @@
         <item name="android:layout_weight">1</item>
         <item name="android:paddingTop">16dp</item>
         <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textStyle">italic</item>
         <item name="android:textAppearance">?android:textAppearanceSmall</item>
     </style>
 

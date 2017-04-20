@@ -84,7 +84,7 @@ public class ProductProvider extends ContentProvider {
                         null, null, sortOrder);
                 break;
             default:
-                throw new IllegalArgumentException("Cannot query unknown URI " + uri);
+                throw new IllegalArgumentException("Cannot run query unknown URI " + uri);
         }
 
         // Supply the cursor with the notification URI so that changes can be notified later
@@ -139,7 +139,7 @@ public class ProductProvider extends ContentProvider {
             throw new IllegalArgumentException("Product requires a valid supplier email");
         }
 
-        // No need to check the description, any value is valid (including null).
+        // No need to check the image URI, any value is valid (including null).
 
         // Get writeable database
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
@@ -223,7 +223,7 @@ public class ProductProvider extends ContentProvider {
             }
         }
 
-        // No need to check the description, any value is valid (including null).
+        // No need to check the image URI, any value is valid (including null).
 
         // If there are no values contained, return 0, that is without any changes
         if (values.size() == 0) {
