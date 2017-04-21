@@ -13,7 +13,7 @@ import com.example.android.inventoryapp.data.ProductContract.ProductEntry;
 
 /**
  * Content provider for the inventory app.
- *
+ * <p>
  * Created by Christi on 19.04.2017.
  */
 
@@ -77,7 +77,7 @@ public class ProductProvider extends ContentProvider {
             case PRODUCT_ID:
                 // Get the selection with its ID
                 selection = ProductEntry._ID + "=?";
-                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
 
                 // Query the database for this ID
                 cursor = database.query(ProductEntry.TABLE_NAME, projection, selection, selectionArgs,
@@ -169,7 +169,7 @@ public class ProductProvider extends ContentProvider {
             case PRODUCT_ID:
                 // Get selection together with the ID for the row to be updated
                 selection = ProductEntry._ID + "=?";
-                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
                 return updateProduct(uri, contentValues, selection, selectionArgs);
             default:
                 throw new IllegalArgumentException("Update is not supported for " + uri);
@@ -263,7 +263,7 @@ public class ProductProvider extends ContentProvider {
             case PRODUCT_ID:
                 // Delete a single row given by the ID in the URI
                 selection = ProductEntry._ID + "=?";
-                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
                 rowsDeleted = database.delete(ProductEntry.TABLE_NAME, selection, selectionArgs);
                 break;
             default:

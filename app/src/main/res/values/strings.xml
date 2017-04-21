@@ -26,15 +26,11 @@
     <string name="details_delete_alert_yes">Yes</string>
     <string name="details_delete_alert_no">No</string>
 
-    <!-- Empty text view string -->
-    <string name="empty_text_view_string">No data found.</string>
+    <!-- Empty title text view string -->
+    <string name="empty_title_text_view_string">No data found</string>
 
-
-
-
-
-
-
+    <!-- Empty body text view string -->
+    <string name="empty_body_text_view_string">Use the button for new products</string>
 
     <!-- Toast message in editor when new product has been successfully inserted [CHAR LIMIT=NONE] -->
     <string name="add_product_page_insert_successful">Product saved</string>
@@ -50,10 +46,6 @@
 
     <!-- Toast message in add product page when new product has failed to be inserted [CHAR LIMIT=NONE] -->
     <string name="product_cursor_adapter_decrement_failed">Error on reducing quantity</string>
-
-
-
-
 
 
     <!-- Label for product name on the add product page [CHAR LIMIT=30] -->

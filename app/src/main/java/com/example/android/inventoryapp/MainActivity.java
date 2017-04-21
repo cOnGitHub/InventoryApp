@@ -33,12 +33,6 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<C
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Delete database in order to fill it up in next step
-        getContentResolver().delete(ProductEntry.CONTENT_URI, null, null);
-
-        // Fill database for testing purposes
-        DbUpdateUtils.fillDatabase(this);
-
         // Setup button to open AddProductActivity
         Button addProductButton = (Button) findViewById(R.id.add_button);
         addProductButton.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<C
         ListView productListView = (ListView) findViewById(R.id.list_view);
 
         // Find empty view and set it to the list view
-        View emptyView = findViewById(R.id.empty_state_text_view);
+        View emptyView = findViewById(R.id.empty_view);
         productListView.setEmptyView(emptyView);
 
         // Setup the cursor adapter

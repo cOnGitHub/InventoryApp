@@ -177,8 +177,7 @@ public class DetailActivity extends AppCompatActivity implements LoaderCallbacks
         });
 
 
-
-        }
+    }
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
@@ -231,8 +230,8 @@ public class DetailActivity extends AppCompatActivity implements LoaderCallbacks
             mProductNameTextView.setText(name);
 
             // Set Bitmap for image view
-            File imgFile = new  File(imageUriString);
-            if(imgFile.exists()){
+            File imgFile = new File(imageUriString);
+            if (imgFile.exists()) {
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                 mImageView.setImageBitmap(myBitmap);
             }
@@ -241,10 +240,14 @@ public class DetailActivity extends AppCompatActivity implements LoaderCallbacks
             // select string corresponding to reorder rate
             String reorderRateString;
             switch (reorderRate) {
-                case 1: reorderRateString = getResources().getString(R.string.reorder_rate_weekly);
-                case 2: reorderRateString = getResources().getString(R.string.reorder_rate_monthly);
-                case 3: reorderRateString = getResources().getString(R.string.reorder_rate_yearly);
-                default: reorderRateString = getResources().getString(R.string.reorder_rate_daily);
+                case 1:
+                    reorderRateString = getResources().getString(R.string.reorder_rate_weekly);
+                case 2:
+                    reorderRateString = getResources().getString(R.string.reorder_rate_monthly);
+                case 3:
+                    reorderRateString = getResources().getString(R.string.reorder_rate_yearly);
+                default:
+                    reorderRateString = getResources().getString(R.string.reorder_rate_daily);
             }
             mReorderRateTextView.setText(reorderRateString);
             mSupplierEmailTextView.setText(supplierEmail);

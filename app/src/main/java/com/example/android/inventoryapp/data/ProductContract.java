@@ -6,14 +6,15 @@ import android.provider.BaseColumns;
 
 /**
  * API contract for the Inventory App.
- *
+ * <p>
  * Created by Christi on 19.04.2017.
  */
 public final class ProductContract {
 
     // To prevent someone from accidentally instantiating the contract class,
     // give it an empty constructor.
-    private ProductContract() {}
+    private ProductContract() {
+    }
 
     /**
      * The content provider.
@@ -52,57 +53,59 @@ public final class ProductContract {
         public static final String CONTENT_ITEM_TYPE =
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PRODUCTS;
 
-        /** Name of database table for products */
+        /**
+         * Name of database table for products
+         */
         public static final String TABLE_NAME = "products";
 
         /**
          * Unique ID number for the product (only for use in the database table).
-         *
+         * <p>
          * Type: INTEGER
          */
         public static final String _ID = BaseColumns._ID;
 
         /**
          * Name of the product.
-         *
+         * <p>
          * Type: TEXT
          */
-        public static final String COLUMN_PRODUCT_NAME ="name";
+        public static final String COLUMN_PRODUCT_NAME = "name";
 
         /**
          * Image URI of the product.
-         *
+         * <p>
          * Type: TEXT
          */
         public static final String COLUMN_PRODUCT_IMAGE_URI = "image_uri";
 
         /**
          * Price of the product.
-         *
+         * <p>
          * Type: INTEGER
          */
         public static final String COLUMN_PRODUCT_PRICE = "price";
 
         /**
          * Quantity of the product.
-         *
+         * <p>
          * Type: INTEGER
          */
         public static final String COLUMN_PRODUCT_QUANTITY = "quantity";
 
         /**
          * Reorder rate of the product.
-         *
+         * <p>
          * Possible values are {@link #REORDER_DAILY}, {@link #REORDER_WEEKLY},
          * {@link #REORDER_MONTHLY} or {@link #REORDER_YEARLY}.
-         *
+         * <p>
          * Type: INTEGER
          */
         public static final String COLUMN_PRODUCT_REORDER_RATE = "reorder_rate";
 
         /**
          * Supplier email for the product.
-         *
+         * <p>
          * Type: TEXT
          */
         public static final String COLUMN_PRODUCT_SUPPLIER_EMAIL = "supplier_email";

@@ -85,8 +85,8 @@
                     android:id="@+id/details_supplier_email_text_view"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight="2"
                     android:text="best.delivery@rewe.com"
                     android:textColor="@color/colorDetailsTextSecondary"
                     android:textStyle="italic" />

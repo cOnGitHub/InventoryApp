@@ -3,12 +3,13 @@ package com.example.android.inventoryapp.data;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
 import com.example.android.inventoryapp.data.ProductContract.ProductEntry;
 
 /**
  * Database helper for the Inventory app. Manages creation and versioning of
  * the database.
- *
+ * <p>
  * Created by Christi on 19.04.2017.
  */
 
@@ -17,7 +18,9 @@ public class ProductDbHelper extends SQLiteOpenHelper {
     // Log tag of the class
     public static final String LOG_TAG = ProductDbHelper.class.getSimpleName();
 
-    /** Name of the database file */
+    /**
+     * Name of the database file
+     */
     private static final String DATABASE_NAME = "store.db";
 
     /**
@@ -40,7 +43,7 @@ public class ProductDbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         // Create a String that contains the SQL statement to create the pets table
-        String SQL_CREATE_PRODUCTS_TABLE =  "CREATE TABLE " + ProductEntry.TABLE_NAME + " ("
+        String SQL_CREATE_PRODUCTS_TABLE = "CREATE TABLE " + ProductEntry.TABLE_NAME + " ("
                 + ProductEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + ProductEntry.COLUMN_PRODUCT_NAME + " TEXT NOT NULL, "
                 + ProductEntry.COLUMN_PRODUCT_IMAGE_URI + " TEXT, "
