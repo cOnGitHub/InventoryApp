@@ -6,7 +6,7 @@
     <string name="add_product">Add new product</string>
 
     <!-- Text for the main activity label -->
-    <string name="main_activity_label">Quantity:</string>
+    <string name="main_activity_label">You can add a new product:</string>
 
     <!-- Text of the sales button -->
     <string name="sales_button_text">-</string>
@@ -21,6 +21,10 @@
     <string name="details_order_button_text">Order now</string>
     <string name="details_delete_label">You can delete the whole product: </string>
     <string name="details_delete_button_text">Delete now</string>
+    <string name="details_delete_alert_heading">Delete this product</string>
+    <string name="details_delete_alert_information">Do you want to delete the whole product</string>
+    <string name="details_delete_alert_yes">Yes</string>
+    <string name="details_delete_alert_no">No</string>
 
     <!-- Empty text view string -->
     <string name="empty_text_view_string">No data found.</string>
@@ -31,13 +35,6 @@
 
 
 
-    <!-- Title text for the empty view, which describes the empty dog house image [CHAR LIMIT=50] -->
-    <string name="empty_view_title_text">It\'s a bit lonely here...</string>
-
-    <!-- Subtitle text for the empty view that prompts the user to add a pet [CHAR LIMIT=50] -->
-    <string name="empty_view_subtitle_text">Get started by adding a pet</string>
-
-    product_cursor_adapter_decrement_failed
 
     <!-- Toast message in editor when new product has been successfully inserted [CHAR LIMIT=NONE] -->
     <string name="add_product_page_insert_successful">Product saved</string>
@@ -54,28 +51,6 @@
     <!-- Toast message in add product page when new product has failed to be inserted [CHAR LIMIT=NONE] -->
     <string name="product_cursor_adapter_decrement_failed">Error on reducing quantity</string>
 
-
-
-    <!-- Toast message in editor when current pet was successfully updated [CHAR LIMIT=NONE] -->
-    <string name="editor_update_pet_successful">Pet updated</string>
-
-    <!-- Toast message in editor when current pet has failed to be updated [CHAR LIMIT=NONE] -->
-    <string name="editor_update_pet_failed">Error with updating pet</string>
-
-    <!-- Toast message in editor when current pet was successfully deleted [CHAR LIMIT=NONE] -->
-    <string name="editor_delete_pet_successful">Pet deleted</string>
-
-    <!-- Toast message in editor when current pet has failed to be deleted [CHAR LIMIT=NONE] -->
-    <string name="editor_delete_pet_failed">Error with deleting pet</string>
-
-    <!-- Dialog message to ask the user to confirm deleting the current pet [CHAR LIMIT=NONE] -->
-    <string name="delete_dialog_msg">Delete this pet?</string>
-
-    <!-- Dialog button text for the option to confirm deleting the current pet [CHAR LIMIT=20] -->
-    <string name="delete">Delete</string>
-
-    <!-- Dialog button text for the option to cancel deletion of the current pet [CHAR LIMIT=20] -->
-    <string name="cancel">Cancel</string>
 
 
 

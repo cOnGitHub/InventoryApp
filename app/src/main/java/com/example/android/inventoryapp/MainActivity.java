@@ -2,8 +2,6 @@ package com.example.android.inventoryapp;
 
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ContentUris;
-import android.content.ContentValues;
-import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
@@ -34,6 +32,12 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<C
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Delete database in order to fill it up in next step
+        getContentResolver().delete(ProductEntry.CONTENT_URI, null, null);
+
+        // Fill database for testing purposes
+        DbUpdateUtils.fillDatabase(this);
 
         // Setup button to open AddProductActivity
         Button addProductButton = (Button) findViewById(R.id.add_button);
@@ -77,25 +81,6 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<C
         // Start the loader
         getLoaderManager().initLoader(PRODUCT_LOADER, null, this);
 
-    }
-
-    /**
-     * Helper method to insert product data into the database.
-     */
-    public void insertProduct(Context context) {
-
-        // Create a new map of values, where column names are the keys
-        ContentValues values = new ContentValues();
-        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Banana");
-        values.put(ProductEntry.COLUMN_PRODUCT_IMAGE_URI, "Banana from South Africa - biological");
-        values.put(ProductEntry.COLUMN_PRODUCT_PRICE, 1.23);
-        values.put(ProductEntry.COLUMN_PRODUCT_QUANTITY, 100);
-        values.put(ProductEntry.COLUMN_PRODUCT_REORDER_RATE, ProductEntry.REORDER_WEEKLY);
-        values.put(ProductEntry.COLUMN_PRODUCT_SUPPLIER_EMAIL, "fruits.from_SA@web.southafrica.com");
-
-        // Insert a new row for the data in the ContenValues and get the new content URI
-        // of the new product
-        Uri newUri = getContentResolver().insert(ProductEntry.CONTENT_URI, values);
     }
 
     @Override

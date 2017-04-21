@@ -135,7 +135,7 @@ public class ProductProvider extends ContentProvider {
 
         // Check that the supplier email is not null and that it's valid
         String supplierEmail = values.getAsString(ProductEntry.COLUMN_PRODUCT_SUPPLIER_EMAIL);
-        if (supplierEmail == null || !ProductEntry.isValidSupplierEmail(supplierEmail)) {
+        if (supplierEmail == null) { /** || !ProductEntry.isValidSupplierEmail(supplierEmail)) { **/
             throw new IllegalArgumentException("Product requires a valid supplier email");
         }
 

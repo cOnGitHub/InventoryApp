@@ -2,11 +2,15 @@ package com.example.android.inventoryapp;
 
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.inventoryapp.data.ProductContract.ProductEntry;
+
+import java.io.File;
 
 
 /**
@@ -28,6 +34,12 @@ public class DetailActivity extends AppCompatActivity implements LoaderCallbacks
 
     // Content URI for the existing product (null if it's a new product)
     private Uri mCurrentProductUri;
+
+    // Delete button
+    private Button mDeleteButton;
+
+    // Order button
+    private Button mOrderButton;
 
     // Product name text view
     private TextView mProductNameTextView;
@@ -57,6 +69,12 @@ public class DetailActivity extends AppCompatActivity implements LoaderCallbacks
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
+        // Delete button
+        mDeleteButton = (Button) findViewById(R.id.details_delete_button);
+
+        // Order button
+        mOrderButton = (Button) findViewById(R.id.details_order_button);
 
         // Product name text view
         mProductNameTextView = (TextView) findViewById(R.id.details_product_name_text_view);
@@ -108,7 +126,59 @@ public class DetailActivity extends AppCompatActivity implements LoaderCallbacks
             }
         });
 
-    }
+        // Set OnClickListener on delete button
+        mDeleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(DetailActivity.this);
+                builder1.setTitle(R.string.details_delete_alert_heading);
+                builder1.setMessage(R.string.details_delete_alert_information);
+                builder1.setCancelable(true);
+
+                builder1.setPositiveButton(
+                        R.string.details_delete_alert_yes,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // delete the product
+                                int rowsDeleted = getContentResolver().delete(mCurrentProductUri, null, null);
+                                Intent intent = new Intent(DetailActivity.this, MainActivity.class);
+                                startActivity(intent);
+
+                                dialog.cancel();
+                            }
+                        });
+
+                builder1.setNegativeButton(
+                        R.string.details_delete_alert_no,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
+            }
+
+        });
+
+        // Set OnClickListener on order button
+        mOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                emailIntent.setType("text/html");
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, mSupplierEmailTextView.getText());
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Order");
+                emailIntent.putExtra(Intent.EXTRA_TEXT, "Hello, please send me your products list so that I can execute any order. Regards");
+
+                startActivity(Intent.createChooser(emailIntent, "Send Email"));
+            }
+        });
+
+
+
+        }
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
@@ -157,22 +227,26 @@ public class DetailActivity extends AppCompatActivity implements LoaderCallbacks
             int reorderRate = cursor.getInt(reorderRateColumnIndex);
             String supplierEmail = cursor.getString(supplierEmailColumnIndex);
 
-            /**
-            Bitmap bitmap = null;
-            try {
-                //getBitmapFromUri();
-                Uri imageUri = Uri.parse(imageUriString);
-                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-            } catch (IOException e) {
-                Log.e("DetailActivity", "Problem creating Bitmap from Uri", e);
-            }**/
-
             // Update the views on the screen with the values from the database
             mProductNameTextView.setText(name);
-            //mImageView.setImageBitmap(bitmap);
+
+            // Set Bitmap for image view
+            File imgFile = new  File(imageUriString);
+            if(imgFile.exists()){
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                mImageView.setImageBitmap(myBitmap);
+            }
             mPriceTextView.setText(Double.toString(price));
             mQuantityTextView.setText(Integer.toString(quantity));
-            mReorderRateTextView.setText(Integer.toString(reorderRate));
+            // select string corresponding to reorder rate
+            String reorderRateString;
+            switch (reorderRate) {
+                case 1: reorderRateString = getResources().getString(R.string.reorder_rate_weekly);
+                case 2: reorderRateString = getResources().getString(R.string.reorder_rate_monthly);
+                case 3: reorderRateString = getResources().getString(R.string.reorder_rate_yearly);
+                default: reorderRateString = getResources().getString(R.string.reorder_rate_daily);
+            }
+            mReorderRateTextView.setText(reorderRateString);
             mSupplierEmailTextView.setText(supplierEmail);
 
         }

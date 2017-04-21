@@ -3,10 +3,14 @@ package com.example.android.inventoryapp;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 
 import com.example.android.inventoryapp.data.ProductContract;
 import com.example.android.inventoryapp.data.ProductContract.ProductEntry;
+
+import java.io.File;
 
 /**
  * Created by Christi on 20.04.2017.
@@ -26,7 +30,7 @@ public class DbUpdateUtils {
 
     /**
      * Helper method that reduces the quantity value of
-     * a product by 1
+     * a product
      *
      * @param contentUri
      */
@@ -70,8 +74,8 @@ public class DbUpdateUtils {
     }
 
     /**
-     * Helper method that reduces the quantity value of
-     * a product by 1
+     * Helper method that increases the quantity value of
+     * a product
      *
      * @param contentUri
      */
@@ -109,7 +113,145 @@ public class DbUpdateUtils {
         // Update row in the table of the database
         rowsAffected = context.getContentResolver().update(contentUri, updateValues, null, null);
 
+
         return rowsAffected;
+    }
+
+    /**
+     * Helper method to insert product data into the database.
+     */
+    public static void fillDatabase(Context context) {
+
+        // Create ContentValues for a product
+        ContentValues values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Bananas");
+        values.put(ProductEntry.COLUMN_PRODUCT_IMAGE_URI, "file://sdcard/256px-Bananas.jpg");
+        values.put(ProductEntry.COLUMN_PRODUCT_PRICE, 1.23);
+        values.put(ProductEntry.COLUMN_PRODUCT_QUANTITY, 100);
+        values.put(ProductEntry.COLUMN_PRODUCT_REORDER_RATE, ProductEntry.REORDER_WEEKLY);
+        values.put(ProductEntry.COLUMN_PRODUCT_SUPPLIER_EMAIL, "fruits.from_SA@web.southafrica.com");
+
+        // Insert the product into the database table
+        context.getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+
+        // Create ContentValues for a product
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Green Olives");
+        values.put(ProductEntry.COLUMN_PRODUCT_IMAGE_URI, "file://sdcard/green_olives.jpg");
+        values.put(ProductEntry.COLUMN_PRODUCT_PRICE, 1.56);
+        values.put(ProductEntry.COLUMN_PRODUCT_QUANTITY, 50);
+        values.put(ProductEntry.COLUMN_PRODUCT_REORDER_RATE, ProductEntry.REORDER_MONTHLY);
+        values.put(ProductEntry.COLUMN_PRODUCT_SUPPLIER_EMAIL, "best.offers@greek-olives.gr");
+
+        // Insert the product into the database table
+        context.getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+
+        // Create ContentValues for a product
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "German Bread");
+        values.put(ProductEntry.COLUMN_PRODUCT_IMAGE_URI, "file://sdcard/german-bread.jpg");
+        values.put(ProductEntry.COLUMN_PRODUCT_PRICE, 2.80);
+        values.put(ProductEntry.COLUMN_PRODUCT_QUANTITY, 80);
+        values.put(ProductEntry.COLUMN_PRODUCT_REORDER_RATE, ProductEntry.REORDER_WEEKLY);
+        values.put(ProductEntry.COLUMN_PRODUCT_SUPPLIER_EMAIL, "Brotangebote-weltweit@Baeckerei-Meyer.de");
+
+        // Insert the product into the database table
+        context.getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+
+        // Create ContentValues for a product
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Red Vine");
+        values.put(ProductEntry.COLUMN_PRODUCT_IMAGE_URI, "file://sdcard/red-vine.jpg");
+        values.put(ProductEntry.COLUMN_PRODUCT_PRICE, 8.20);
+        values.put(ProductEntry.COLUMN_PRODUCT_QUANTITY, 30);
+        values.put(ProductEntry.COLUMN_PRODUCT_REORDER_RATE, ProductEntry.REORDER_MONTHLY);
+        values.put(ProductEntry.COLUMN_PRODUCT_SUPPLIER_EMAIL, "agriculture-biologique@vin-rouges.fr");
+
+        // Insert the product into the database table
+        context.getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+
+        // Create ContentValues for a product
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Pesto rosso");
+        values.put(ProductEntry.COLUMN_PRODUCT_IMAGE_URI, "file://sdcard/pesto-rosso.jpg");
+        values.put(ProductEntry.COLUMN_PRODUCT_PRICE, 3.50);
+        values.put(ProductEntry.COLUMN_PRODUCT_QUANTITY, 70);
+        values.put(ProductEntry.COLUMN_PRODUCT_REORDER_RATE, ProductEntry.REORDER_WEEKLY);
+        values.put(ProductEntry.COLUMN_PRODUCT_SUPPLIER_EMAIL, "delicatessi@vitaitalia.it");
+
+        // Insert the product into the database table
+        context.getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+
+        // Create ContentValues for a product
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Budweiser beer");
+        values.put(ProductEntry.COLUMN_PRODUCT_IMAGE_URI, "file://sdcard/budweise-beer.jpg");
+        values.put(ProductEntry.COLUMN_PRODUCT_PRICE, 1.00);
+        values.put(ProductEntry.COLUMN_PRODUCT_QUANTITY, 150);
+        values.put(ProductEntry.COLUMN_PRODUCT_REORDER_RATE, ProductEntry.REORDER_WEEKLY);
+        values.put(ProductEntry.COLUMN_PRODUCT_SUPPLIER_EMAIL, "traditional-beer@czech-beer.cz");
+
+        // Insert the product into the database table
+        context.getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+
+        // Create ContentValues for a product
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Spaghetti");
+        values.put(ProductEntry.COLUMN_PRODUCT_IMAGE_URI, "file://sdcard/spaghetti.jpg");
+        values.put(ProductEntry.COLUMN_PRODUCT_PRICE, 0.80);
+        values.put(ProductEntry.COLUMN_PRODUCT_QUANTITY, 400);
+        values.put(ProductEntry.COLUMN_PRODUCT_REORDER_RATE, ProductEntry.REORDER_DAILY);
+        values.put(ProductEntry.COLUMN_PRODUCT_SUPPLIER_EMAIL, "italian-food-store@don-pedro.it");
+
+        // Insert the product into the database table
+        context.getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+
+        // Create ContentValues for a product
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Frutti di mare");
+        values.put(ProductEntry.COLUMN_PRODUCT_IMAGE_URI, "file://sdcard/frutti-di-mare.jpg");
+        values.put(ProductEntry.COLUMN_PRODUCT_PRICE, 12.70);
+        values.put(ProductEntry.COLUMN_PRODUCT_QUANTITY, 40);
+        values.put(ProductEntry.COLUMN_PRODUCT_REORDER_RATE, ProductEntry.REORDER_WEEKLY);
+        values.put(ProductEntry.COLUMN_PRODUCT_SUPPLIER_EMAIL, "frutti-di-mare@italianstore.com");
+
+        // Insert the product into the database table
+        context.getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+
+        // Create ContentValues for a product
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Häagen Dasz");
+        values.put(ProductEntry.COLUMN_PRODUCT_IMAGE_URI, "file://sdcard/danish-ice.jpg");
+        values.put(ProductEntry.COLUMN_PRODUCT_PRICE, 2.19);
+        values.put(ProductEntry.COLUMN_PRODUCT_QUANTITY, 200);
+        values.put(ProductEntry.COLUMN_PRODUCT_REORDER_RATE, ProductEntry.REORDER_WEEKLY);
+        values.put(ProductEntry.COLUMN_PRODUCT_SUPPLIER_EMAIL, "ice-dreams@haeagen-dasz.dm");
+
+        // Insert the product into the database table
+        context.getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+
+        // Create ContentValues for a product
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Red Tomatoes");
+        values.put(ProductEntry.COLUMN_PRODUCT_IMAGE_URI, "file://sdcard/red-tomatoes.jpg");
+        values.put(ProductEntry.COLUMN_PRODUCT_PRICE, 0.90);
+        values.put(ProductEntry.COLUMN_PRODUCT_QUANTITY, 300);
+        values.put(ProductEntry.COLUMN_PRODUCT_REORDER_RATE, ProductEntry.REORDER_DAILY);
+        values.put(ProductEntry.COLUMN_PRODUCT_SUPPLIER_EMAIL, "fresh-foods@hollandia.nl");
+
+        // Insert the product into the database table
+        context.getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+
+    }
+
+    public static Bitmap loadImage(String pathToImage) {
+        Bitmap myBitmap = null;
+        File imgFile = new File(pathToImage);
+        if (imgFile.exists()) {
+            myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+            //imageView.setImageBitmap(myBitmap);
+        }
+        return myBitmap;
     }
 
 }

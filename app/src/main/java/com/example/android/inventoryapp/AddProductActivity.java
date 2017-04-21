@@ -190,7 +190,6 @@ public class AddProductActivity extends AppCompatActivity {
             mQuantityEditText.setText("");
             //mReorderRateSpinner;
             mSupplierEmailEditText.setText("");
-
         }
     }
 
