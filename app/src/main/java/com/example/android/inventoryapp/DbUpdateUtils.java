@@ -53,7 +53,9 @@ public class DbUpdateUtils {
         Cursor cursor = context.getContentResolver().query(contentUri, projection, null, null, null);
 
         // Move cursor to first, otherwise it will be at position -1 and this will throw an error in the next line
-        cursor.moveToFirst();
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
 
         // Get the quantity of the product
         int quantity = cursor.getInt(cursor.getColumnIndex(ProductContract.ProductEntry.COLUMN_PRODUCT_QUANTITY));
@@ -70,6 +72,10 @@ public class DbUpdateUtils {
             // Update row in the table of the database
             rowsAffected = context.getContentResolver().update(contentUri, updateValues, null, null);
         }
+
+        // Close the cursor
+        cursor.close();
+
         return rowsAffected;
     }
 
@@ -98,7 +104,9 @@ public class DbUpdateUtils {
         Cursor cursor = context.getContentResolver().query(contentUri, projection, null, null, null);
 
         // Move cursor to first, otherwise it will be at position -1 and this will throw an error in the next line
-        cursor.moveToFirst();
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
 
         // Get the quantity of the product
         int quantity = cursor.getInt(cursor.getColumnIndex(ProductContract.ProductEntry.COLUMN_PRODUCT_QUANTITY));
@@ -112,6 +120,9 @@ public class DbUpdateUtils {
 
         // Update row in the table of the database
         rowsAffected = context.getContentResolver().update(contentUri, updateValues, null, null);
+
+        // Clcose the cursor
+        cursor.close();
 
 
         return rowsAffected;
